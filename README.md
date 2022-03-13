@@ -21,3 +21,11 @@ pool.getConnection((err) => {
   }
 });
 ```
+
+# Docker 서버 설치 메뉴얼
+
+- Docker로 alpine환경설치
+- volume 설정 : 소스코드 , db
+- github으로 코드 업데이트
+- 'initSchemas.sql'구분 하나씩 실행해서 디비 초기화
+- monit_EER.mwb 로 구조변경 가능
