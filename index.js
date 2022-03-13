@@ -1,0 +1,29 @@
+import express from "express";
+import config from "./config.js";
+import helmet from "helmet";
+import morgan from "morgan";
+import cookieParser from "cookie-parser";
+import cors from "cors";
+
+const app = express();
+
+app.use(cors(config.corsOptions));
+app.use(express.json());
+app.use(express.urlencoded({ extension: false }));
+app.use(helmet());
+app.use(morgan("dev"));
+app.use(cookieParser());
+app.use(express.static("public"));
+
+app.get("/", (req, res) => {
+  res.send("monito server is on");
+});
+
+app.listen(config.port, () => {
+  console.log(`server is running on ${config.port}`);
+});
+
+// 404
+app.use((req, res, next) => {
+  res.sendStatus(404);
+});
