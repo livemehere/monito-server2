@@ -5,6 +5,8 @@ import morgan from "morgan";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 
+import userRouter from "./router/userRouter.js";
+
 const app = express();
 
 app.use(cors(config.corsOptions));
@@ -18,6 +20,8 @@ app.use(express.static("public"));
 app.get("/", (req, res) => {
   res.send("monito server is on");
 });
+
+app.use("/api/user", userRouter);
 
 app.listen(config.port, () => {
   console.log(`server is running on ${config.port}`);
