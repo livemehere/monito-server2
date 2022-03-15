@@ -13,6 +13,9 @@ const config = {
     database: process.env.DB_DATABASE,
     db_port: process.env.DB_PORT,
   },
+  jwt: {
+    privateKey: process.env.JWT_PRIVATE_KEY,
+  },
 };
 
 export default config;
