@@ -34,10 +34,20 @@ export async function createUser(req, res) {
 
 export async function updateUser(req, res) {
   if (CheckValidator(req, res)) return;
+  console.log(req.body.profile_img);
 
   try {
-    const sql = `UPDATE user SET email = '${req.body.email}', password = '${req.body.password}', name = '${req.body.name}', birth = '${req.body.birth}', job = '${req.body.job}' WHERE (id = '${req.body.id}');
+    const sql = `UPDATE user SET email = '${req.body.email}', password = '${
+      req.body.password
+    }', name = '${req.body.name}', birth = '${req.body.birth}', job = '${
+      req.body.job
+    }' ${
+      req.body.profile_img !== undefined
+        ? `, profile_img = '${req.body.profile_img}'`
+        : ""
+    } WHERE (id = '${req.body.id}');
     `;
+    console.log(sql);
     const result = await pool.query(sql);
   } catch (e) {
     if (e) return res.json(e.message);
