@@ -34,7 +34,6 @@ export async function createUser(req, res) {
 
 export async function updateUser(req, res) {
   if (CheckValidator(req, res)) return;
-  console.log(req.body.profile_img);
 
   try {
     const sql = `UPDATE user SET email = '${req.body.email}', password = '${

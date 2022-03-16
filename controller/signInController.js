@@ -16,7 +16,6 @@ export async function signIn(req, res) {
     if (e) return res.json(e.message);
   }
 
-  console.log(result[0][0]);
   if (!result[0][0])
     return res
       .status(400)
