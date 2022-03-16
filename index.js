@@ -33,7 +33,7 @@ app.use("/time", timeRouter);
 app.use('/record',recordRouter);
 app.use('/calendar',calendarRouter);
 app.use('/room',roomRouter);
-app.use('/userRoom',userRoomRouter)
+app.use('/userRoom',userRoomRouter);
 
 app.listen(config.port, () => {
   console.log(`server is running on ${config.port}`);
