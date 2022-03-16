@@ -10,6 +10,7 @@ import signInRouter from "./router/signInRouter.js";
 import timeRouter from "./router/timeRouter.js";
 import recordRouter from "./router/recordRouter.js";
 import calendarRouter from "./router/calendarRouter.js";
+import roomRouter from "./router/roomRouter.js";
 
 const app = express();
 
@@ -30,6 +31,7 @@ app.use("/signIn", signInRouter);
 app.use("/time", timeRouter);
 app.use('/record',recordRouter);
 app.use('/calendar',calendarRouter);
+app.use('/room',roomRouter);
 
 app.listen(config.port, () => {
   console.log(`server is running on ${config.port}`);
