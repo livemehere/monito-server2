@@ -1,0 +1,865 @@
+{
+	"info": {
+		"_postman_id": "a0dc75ed-3f1b-49ea-ac7e-836afdc3040a",
+		"name": "monito",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "사용자",
+			"item": [
+				{
+					"name": "user",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{dev}}/api/user/3",
+							"host": [
+								"{{dev}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"3"
+							]
+						},
+						"description": "사용자의 고유 ID를 통해서 정보를 가져온다"
+					},
+					"response": []
+				},
+				{
+					"name": "user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "ha23@gmail.com",
+									"description": "이메일 형식이어야함 ",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "1234",
+									"description": "패스워드 동일해야함",
+									"type": "text"
+								},
+								{
+									"key": "password_check",
+									"value": "1234",
+									"description": "패스워드 동일해야함",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "공태만",
+									"description": "사용자이름",
+									"type": "text"
+								},
+								{
+									"key": "birth",
+									"value": "1998-11-30",
+									"description": "DATE 형식이어야함",
+									"type": "text"
+								},
+								{
+									"key": "job",
+									"value": "프리렌서",
+									"description": "string",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{dev}}/api/user",
+							"host": [
+								"{{dev}}"
+							],
+							"path": [
+								"api",
+								"user"
+							]
+						},
+						"description": "새로운 사용자 생성"
+					},
+					"response": []
+				},
+				{
+					"name": "user",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "ha@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "1234",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "111",
+									"type": "text"
+								},
+								{
+									"key": "birth",
+									"value": "20221130",
+									"type": "text"
+								},
+								{
+									"key": "job",
+									"value": "노동자",
+									"type": "text"
+								},
+								{
+									"key": "profile_img",
+									"value": "asdasd",
+									"description": "1.없어도된다 / 2.\" \" 공백이면 프로필 지우기 / 3. url넣으면 프로필 등록",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{dev}}/api/user",
+							"host": [
+								"{{dev}}"
+							],
+							"path": [
+								"api",
+								"user"
+							]
+						},
+						"description": "사용자 정보 업데이트 (덮어쓰는것이기 때문에, 유지하고자 하는 정보는 반드시 그대로 입력해서 넘겨줘야합니다)"
+					},
+					"response": []
+				},
+				{
+					"name": "user",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "gender",
+									"value": "남자",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "01093293933",
+									"type": "text"
+								},
+								{
+									"key": "birth",
+									"value": "1998-11-30",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{dev}}/api/user/11",
+							"host": [
+								"{{dev}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"11"
+							]
+						},
+						"description": "고유 ID를 이용해 사용자 삭제"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "로그인",
+			"item": [
+				{
+					"name": "signIn",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "ha@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "1234",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{dev}}/signIn",
+							"host": [
+								"{{dev}}"
+							],
+							"path": [
+								"signIn"
+							]
+						},
+						"description": "ID, Password 로 token 발급(유효기한 무제한)"
+					},
+					"response": []
+				},
+				{
+					"name": "verifyUserToken",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImhhQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiMTIzNCIsIm5hbWUiOiLqs7Xtg5zrp4wiLCJiaXJ0aCI6IjE5OTgtMTEtMjlUMTU6MDA6MDAuMDAwWiIsImpvYiI6Iu2UhOumrOugjOyEnCIsInByb2ZpbGVfaW1nIjpudWxsLCJpYXQiOjE2NDczNjYwMTB9.ptdEpR4pRobIheHx5OKs2vaI1YoBam5K4Ny9YhdcnIU",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{dev}}/signIn/verify",
+							"host": [
+								"{{dev}}"
+							],
+							"path": [
+								"signIn",
+								"verify"
+							]
+						},
+						"description": "토큰을 통해 사용자 정보 가져오기(유효하지 않은 토큰일 경우 에러반환)"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "시간데이터",
+			"item": [
+				{
+					"name": "time",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{dev}}/time/3",
+							"host": [
+								"{{dev}}"
+							],
+							"path": [
+								"time",
+								"3"
+							]
+						},
+						"description": "사용자 id로 집계시간 받기"
+					},
+					"response": []
+				},
+				{
+					"name": "time",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "5",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{dev}}/time",
+							"host": [
+								"{{dev}}"
+							],
+							"path": [
+								"time"
+							]
+						},
+						"description": "사용자 id 를 가지고 집계시간 데이터 새로 생성(중복안됨)"
+					},
+					"response": []
+				},
+				{
+					"name": "time",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "5",
+									"type": "text"
+								},
+								{
+									"key": "total_time",
+									"value": "111",
+									"description": "총 공부시간",
+									"type": "text"
+								},
+								{
+									"key": "focus_time",
+									"value": "222333",
+									"description": "총 집중시간",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{dev}}/time",
+							"host": [
+								"{{dev}}"
+							],
+							"path": [
+								"time"
+							]
+						},
+						"description": "집계시간 업데이트(두가지 항목 업데이트 가능)"
+					},
+					"response": []
+				},
+				{
+					"name": "time",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "5",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{dev}}/time",
+							"host": [
+								"{{dev}}"
+							],
+							"path": [
+								"time"
+							]
+						},
+						"description": "유저 ID를 가지고 집계시간 데이터 삭제"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "기록데이터",
+			"item": [
+				{
+					"name": "record",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "3",
+									"description": "유저아이디",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "자료구조",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{dev}}/record",
+							"host": [
+								"{{dev}}"
+							],
+							"path": [
+								"record"
+							]
+						},
+						"description": "해당하는 유저ID의 TODO일정 한개 생성"
+					},
+					"response": []
+				},
+				{
+					"name": "record",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{dev}}/record/9",
+							"host": [
+								"{{dev}}"
+							],
+							"path": [
+								"record",
+								"9"
+							]
+						},
+						"description": "특정 ID 유저의 TODO 목록 모두 가져오기"
+					},
+					"response": []
+				},
+				{
+					"name": "record",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "2238",
+									"type": "text"
+								},
+								{
+									"key": "cumulative_time",
+									"value": "11111",
+									"type": "text"
+								},
+								{
+									"key": "endDate",
+									"value": "1199-11-11 22:22:22",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{dev}}/record",
+							"host": [
+								"{{dev}}"
+							],
+							"path": [
+								"record"
+							]
+						},
+						"description": "TODO 아디이를 가지고 데이터를 업데이트\n\ncumulative_time : 누적시간\n\nendDate : 마지막으로 학습한시간\n\n*   startDate같은 경우 초기값으로 생성일자로 고정되어있음.\n*   마지막으로 학습한시간과, 누적시간만 계속 업데이트 해주면 된다."
+					},
+					"response": []
+				},
+				{
+					"name": "record",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "2240",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{dev}}/record",
+							"host": [
+								"{{dev}}"
+							],
+							"path": [
+								"record"
+							]
+						},
+						"description": "TODO 데이터의 ID를 가지고 기록 지우기"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "calendar",
+			"item": [
+				{
+					"name": "calendar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "5",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "운영체제",
+									"type": "text"
+								},
+								{
+									"key": "startDate",
+									"value": "2022-01-01",
+									"type": "text"
+								},
+								{
+									"key": "endDate",
+									"value": "2022-01-22",
+									"type": "text"
+								},
+								{
+									"key": "detail",
+									"value": "ㅇ메모부터하자",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{dev}}/calendar",
+							"host": [
+								"{{dev}}"
+							],
+							"path": [
+								"calendar"
+							]
+						},
+						"description": "유저ID를 가지고 일정 생성"
+					},
+					"response": []
+				},
+				{
+					"name": "calendar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "8",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "\b지루하다 ",
+									"type": "text"
+								},
+								{
+									"key": "startDate",
+									"value": "2022-03-20",
+									"type": "text"
+								},
+								{
+									"key": "endDate",
+									"value": "2022-03-21",
+									"type": "text"
+								},
+								{
+									"key": "detail",
+									"value": "\b공부!",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{dev}}/calendar",
+							"host": [
+								"{{dev}}"
+							],
+							"path": [
+								"calendar"
+							]
+						},
+						"description": "calendar ID를 가지고 일정 수정(userID아님 주의!)"
+					},
+					"response": []
+				},
+				{
+					"name": "calendar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{dev}}/calendar/3",
+							"host": [
+								"{{dev}}"
+							],
+							"path": [
+								"calendar",
+								"3"
+							]
+						},
+						"description": "유저 ID 의 모든 일정(calendar)가져오기"
+					},
+					"response": []
+				},
+				{
+					"name": "calendar",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "8",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{dev}}/calendar",
+							"host": [
+								"{{dev}}"
+							],
+							"path": [
+								"calendar"
+							]
+						},
+						"description": "calendar ID를 가지고 일정 삭제"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "study_group",
+			"item": [
+				{
+					"name": "room",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "roomName",
+									"value": "캡스톤조2",
+									"description": "그룹이름",
+									"type": "text"
+								},
+								{
+									"key": "max_member",
+									"value": "10",
+									"description": "최대인원",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{dev}}/room",
+							"host": [
+								"{{dev}}"
+							],
+							"path": [
+								"room"
+							]
+						},
+						"description": "그룹 생성"
+					},
+					"response": []
+				},
+				{
+					"name": "room",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{dev}}/room/7",
+							"host": [
+								"{{dev}}"
+							],
+							"path": [
+								"room",
+								"7"
+							]
+						},
+						"description": "그룹 ID를 가지고 룸 정보 가져오기"
+					},
+					"response": []
+				},
+				{
+					"name": "room",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "8",
+									"type": "text"
+								},
+								{
+									"key": "is_recruit",
+									"value": "20",
+									"description": "모집중인지 여부 (true(1) / false(0))",
+									"type": "text"
+								},
+								{
+									"key": "now_member",
+									"value": "22",
+									"description": "현재 가입중인 인원",
+									"type": "text"
+								},
+								{
+									"key": "focus_point",
+									"value": "22",
+									"description": "집중포인트(시간으로하던지 자유)",
+									"type": "text"
+								},
+								{
+									"key": "total_time",
+									"value": "22",
+									"description": "그룹에서 총 공부한 시간",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{dev}}/room",
+							"host": [
+								"{{dev}}"
+							],
+							"path": [
+								"room"
+							]
+						},
+						"description": "그룹 ID를 가지고 그룹 수정"
+					},
+					"response": []
+				},
+				{
+					"name": "room",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "8",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{dev}}/room",
+							"host": [
+								"{{dev}}"
+							],
+							"path": [
+								"room"
+							]
+						},
+						"description": "그룹 ID를 가지고 그룹 삭제"
+					},
+					"response": []
+				},
+				{
+					"name": "userRoom",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "user_id",
+									"value": "5",
+									"type": "text"
+								},
+								{
+									"key": "room_id",
+									"value": "7",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{dev}}/userRoom",
+							"host": [
+								"{{dev}}"
+							],
+							"path": [
+								"userRoom"
+							]
+						},
+						"description": "유저 (ID)가 그룹(ID)로 참가한다."
+					},
+					"response": []
+				},
+				{
+					"name": "userRoom",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "user_id",
+									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "room_id",
+									"value": "7",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{dev}}/userRoom",
+							"host": [
+								"{{dev}}"
+							],
+							"path": [
+								"userRoom"
+							]
+						},
+						"description": "유저(ID)가 그룹(ID)에서 탈퇴한다."
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

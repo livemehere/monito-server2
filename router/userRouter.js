@@ -16,7 +16,7 @@ router.get("/:id", getUserById);
 router.post(
   "/",
   [
-    body(["id", "email", "password", "password_check", "name", "birth", "job"])
+    body([ "email", "password", "password_check", "name", "birth", "job"])
       .notEmpty()
       .trim(),
     check("email").isEmail(),
