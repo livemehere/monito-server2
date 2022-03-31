@@ -1,0 +1,22 @@
+version: "3.9"
+
+services:
+  server:
+    build:
+      context: .
+    ports:
+      - '3001:3001'
+    depends_on:
+      - monito_db
+
+  monito_db:
+    image: mariadb
+    ports:
+      - '7777:3306'
+    environment:
+      MARIADB_ROOT_PASSWORD: 7777
+    volumes:
+      - monito_db_volume:/var/lib/mysql
+
+volumes:
+  monito_db_volume:

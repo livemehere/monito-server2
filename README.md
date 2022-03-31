@@ -29,3 +29,8 @@ pool.getConnection((err) => {
 - github으로 코드 업데이트
 - 'initSchemas.sql'구분 하나씩 실행해서 디비 초기화
 - monit_EER.mwb 로 구조변경 가능
+
+## 수정사항
+
+- /room API 추가(전체불러오기)
+- study_group 테이블에 room_code 컬럼 추가
