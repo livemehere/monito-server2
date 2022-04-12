@@ -47,7 +47,7 @@ export async function getAllRoom(req, res) {
     if (e) return res.json(e.message);
   }
 
-  if (!result[0][0]) return res.status(400).send("해당 ID의 study_group 데이터가 존재하지 않습니다");
+  if (!result[0][0]) return res.status(400).send("room이 존재하지 않습니다.");
 
   res.status(200).send(result[0]);
 }
