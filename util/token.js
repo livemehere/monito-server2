@@ -1,20 +1,9 @@
 import jwt from "jsonwebtoken";
 import config from "../config.js";
 
-export async function createToken({
-  id,
-  email,
-  password,
-  name,
-  birth,
-  job,
-  profile_img,
-}) {
+export async function createToken({ id, email, password, name, birth, job, profile_img }) {
   try {
-    const token = jwt.sign(
-      { email, password, name, birth, job, profile_img },
-      config.jwt.privateKey
-    );
+    const token = jwt.sign({ id, email, password, name, birth, job, profile_img }, config.jwt.privateKey);
     return token;
   } catch (e) {
     console.log(e);
