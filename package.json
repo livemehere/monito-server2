@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "start": "npx pm2 start index.js --name monito -o ./public/logs/out.log -e ./public/logs/err.log"
   },
   "keywords": [],
   "author": "",
@@ -22,5 +23,8 @@
     "morgan": "^1.10.0",
     "mysql2": "^2.3.3",
     "pm2": "^5.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
   }
 }
