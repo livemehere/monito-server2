@@ -30,6 +30,10 @@ pool.getConnection((err) => {
 - 'initSchemas.sql'구분 하나씩 실행해서 디비 초기화
 - monit_EER.mwb 로 구조변경 가능
 
+```bash
+docker run -d -it --name db -e MARIADB_ROOT_PASSWORD=비번 -p 3306:3306 -v maria_volume:/var/lib/mysql mariadb
+```
+
 ## 수정사항
 
 - /room API 추가(전체불러오기)
