@@ -1,5 +1,5 @@
 import pool from "../db/database.js";
-import {CheckValidator} from "../util/vailidator.js";
+import { CheckValidator } from "../util/vailidator.js";
 
 /**
  * TODO: 유효성 검사 필요하면 추가
@@ -9,21 +9,44 @@ import {CheckValidator} from "../util/vailidator.js";
 export async function createRecordData(req, res) {
   // id = userId 유저가 존재하지 않느다면 생성하지 않음
   if (CheckValidator(req, res)) return;
-  let { id,name} = req.body; // id = user_id
+  let { user_id, name, focus_time, unfocus_time } = req.body;
   let result;
   try {
-    const sql = `INSERT INTO record values(default,'${name}',default,default,default,${id});`;
-    result = await pool.query(sql);
+    const getByName = await pool.query(
+      `SELECT * FROM mydb.record where datediff(CURRENT_DATE(),date) = 0 and name='${name}';`
+    );
+    const isExist = getByName[0].length > 0;
+
+    if (isExist) {
+      //  이미 존재한다면
+      pool.query(
+        `UPDATE mydb.record SET total_time=total_time+${focus_time}+${unfocus_time},focus_time=focus_time+${focus_time},unfocus_time=unfocus_time+${unfocus_time} WHERE name='${name}' and datediff(CURRENT_DATE (),date) = 0;`
+      );
+    } else {
+      //   존재하지 않느다면
+      pool.query(
+        `INSERT INTO mydb.record values(default,'${name}',${
+          focus_time + unfocus_time
+        },${focus_time},${unfocus_time},CURRENT_DATE(),${user_id})`
+      );
+    }
+
+    result = isExist;
   } catch (e) {
     if (e) return res.json(e.message);
   }
 
-  res.status(200).send({res:"success",msg:"생성 성공"});
+  res.status(200).send({
+    res: "success",
+    msg: "생성 성공",
+    created: !result,
+    updated: result,
+  });
 }
 
 export async function getRecordData(req, res) {
   // id = userId 유저가 존재하지 않느다면 생성하지 않음
-  const {id} = req.params;
+  const { id } = req.params;
   let result;
   try {
     const sql = `SELECT * FROM record WHERE user_id='${id}'`;
@@ -32,33 +55,16 @@ export async function getRecordData(req, res) {
     if (e) return res.json(e.message);
   }
 
-  if(!result[0][0]) return res.status(400).send('해당 ID의 record 데이터가 존재하지 않습니다');
+  if (!result[0][0])
+    return res.status(400).send("해당 ID의 record 데이터가 존재하지 않습니다");
 
   res.status(200).send(result[0]);
 }
 
-export async function updateRecordData(req,res){
-  const {id,cumulative_time,endDate} = req.body;
-
+export async function deleteRecordData(req, res) {
   if (CheckValidator(req, res)) return;
 
-  let result;
-  try {
-    const sql = `UPDATE record SET cumulative_time = ${cumulative_time}, endDate = '${endDate}' WHERE id = ${id};`;
-    result = await pool.query(sql);
-  } catch (e) {
-    if (e) return res.json(e.message);
-  }
-
-  if(result[0].affectedRows == 0) return res.status(400).json({res:'fail',msg:'해당 ID의 record 가 존재하지 않습니다'});
-
-  res.status(200).json({res:'success',msg:'업데이트 성공'})
-}
-
-export async function deleteRecordData(req,res){
-  if (CheckValidator(req, res)) return;
-
-  const {id} = req.body;
+  const { id } = req.body;
   let result;
   try {
     const sql = `DELETE FROM record WHERE id =${id}`;
@@ -67,7 +73,10 @@ export async function deleteRecordData(req,res){
     if (e) return res.json(e.message);
   }
 
-  if(result[0].affectedRows == 0) return res.status(400).json({res:'fail',msg:'해당 ID의 record가 존재하지 않습니다'});
+  if (result[0].affectedRows == 0)
+    return res
+      .status(400)
+      .json({ res: "fail", msg: "해당 ID의 record가 존재하지 않습니다" });
 
-  res.status(200).json({res:'success',msg:'데이터 삭제 성공'})
+  res.status(200).json({ res: "success", msg: "데이터 삭제 성공" });
 }
