@@ -48,9 +48,13 @@ export async function getRecordData(req, res) {
   // id = userId 유저가 존재하지 않느다면 생성하지 않음
   const { id } = req.params;
   let result;
+  let time_sum;
   try {
     const sql = `SELECT * FROM record WHERE user_id='${id}'`;
     result = await pool.query(sql);
+    time_sum = await pool.query(
+      `select sum(total_time) as total_study_time,sum(focus_time) as total_focus_time, sum(unfocus_time) as total_unfocus_time  from mydb.record where user_id =${id};`
+    );
   } catch (e) {
     if (e) return res.json(e.message);
   }
@@ -58,7 +62,7 @@ export async function getRecordData(req, res) {
   if (!result[0][0])
     return res.status(400).send("해당 ID의 record 데이터가 존재하지 않습니다");
 
-  res.status(200).send(result[0]);
+  res.status(200).send({ time_sum: time_sum[0], records: result[0] });
 }
 
 export async function deleteRecordData(req, res) {
