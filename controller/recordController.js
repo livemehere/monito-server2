@@ -26,7 +26,7 @@ export async function createRecordData(req, res) {
       //   존재하지 않느다면
       pool.query(
         `INSERT INTO mydb.record values(default,'${name}',${
-          focus_time + unfocus_time
+          Number(focus_time) + Number(unfocus_time)
         },${focus_time},${unfocus_time},CURRENT_DATE(),${user_id})`
       );
     }
