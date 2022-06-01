@@ -20,7 +20,7 @@ export async function createRecordData(req, res) {
     if (isExist) {
       //  이미 존재한다면
       pool.query(
-        `UPDATE mydb.record SET total_time=total_time+${focus_time}+${unfocus_time},focus_time=focus_time+${focus_time},unfocus_time=unfocus_time+${unfocus_time} WHERE name='${name}' and datediff(CURRENT_DATE (),date) = 0;`
+        `UPDATE mydb.record SET total_time=${focus_time}+${unfocus_time},focus_time=${focus_time},unfocus_time=${unfocus_time} WHERE name='${name}' and datediff(CURRENT_DATE (),date) = 0;`
       );
     } else {
       //   존재하지 않느다면
