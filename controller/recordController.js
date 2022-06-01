@@ -9,7 +9,7 @@ import { CheckValidator } from "../util/vailidator.js";
 export async function createRecordData(req, res) {
   // id = userId 유저가 존재하지 않느다면 생성하지 않음
   if (CheckValidator(req, res)) return;
-  let { user_id, name, focus_time, unfocus_time } = req.body;
+  let { user_id, name, content, focus_time, unfocus_time } = req.body;
   let result;
   try {
     const getByName = await pool.query(
@@ -20,14 +20,14 @@ export async function createRecordData(req, res) {
     if (isExist) {
       //  이미 존재한다면
       pool.query(
-        `UPDATE mydb.record SET total_time=${focus_time}+${unfocus_time},focus_time=${focus_time},unfocus_time=${unfocus_time} WHERE name='${name}' and datediff(CURRENT_DATE (),date) = 0;`
+        `UPDATE mydb.record SET total_time=${focus_time}+${unfocus_time},focus_time=${focus_time},unfocus_time=${unfocus_time},content='${content}' WHERE name='${name}' and datediff(CURRENT_DATE (),date) = 0;`
       );
     } else {
       //   존재하지 않느다면
       pool.query(
         `INSERT INTO mydb.record values(default,'${name}',${
           Number(focus_time) + Number(unfocus_time)
-        },${focus_time},${unfocus_time},CURRENT_DATE(),${user_id})`
+        },${focus_time},${unfocus_time},CURRENT_DATE(),${user_id},'${content}')`
       );
     }
 
