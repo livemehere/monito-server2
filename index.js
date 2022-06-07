@@ -17,15 +17,6 @@ import calendarRouter from "./router/calendarRouter.js";
 import roomRouter from "./router/roomRouter.js";
 import userRoomRouter from "./router/userRoomRouter.js";
 
-const app = express();
-const httpServer = http.createServer(app);
-const httpsServer = https.createServer(credentials, app);
-
-//socket
-const io = socket(httpsServer);
-const users = {};
-const socketToRoom = {};
-
 const privateKey = fs.readFileSync(
   "/etc/letsencrypt/live/monito.ml/privkey.pem",
   "utf8"
@@ -41,6 +32,15 @@ const credentials = {
   cert: certificate,
   ca: ca,
 };
+
+const app = express();
+const httpServer = http.createServer(app);
+const httpsServer = https.createServer(credentials, app);
+
+//socket
+const io = socket(httpsServer);
+const users = {};
+const socketToRoom = {};
 
 app.use(cors(config.corsOptions));
 app.use(express.json());
