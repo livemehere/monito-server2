@@ -7,7 +7,7 @@ import cors from "cors";
 import https from "https";
 import http from "http";
 import fs from "fs";
-import * as socket from "socket.io";
+import { Server } from "socket.io";
 
 import userRouter from "./router/userRouter.js";
 import signInRouter from "./router/signInRouter.js";
@@ -38,7 +38,7 @@ const httpServer = http.createServer(app);
 const httpsServer = https.createServer(credentials, app);
 
 //socket
-const io = socket(httpsServer);
+const io = new Server(httpsServer);
 const users = {};
 const socketToRoom = {};
 
