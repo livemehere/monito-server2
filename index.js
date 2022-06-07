@@ -38,7 +38,9 @@ const httpServer = http.createServer(app);
 const httpsServer = https.createServer(credentials, app);
 
 //socket
-const io = new Server(httpsServer,{ cors: { origin: '*' } });
+const io = new Server(httpsServer,{ cors: {
+  origin: "*",
+}});
 const users = {};
 const socketToRoom = {};
 
