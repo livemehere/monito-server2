@@ -39,7 +39,7 @@ const httpsServer = https.createServer(credentials, app);
 
 //socket
 const io = new Server(httpsServer,{ cors: {
-  origin: "*",
+  origin: ['http://localhost:3000', 'https://monito-renewal.netlify.app']
 }});
 const users = {};
 const socketToRoom = {};
