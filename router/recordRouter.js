@@ -13,7 +13,7 @@ const router = express.Router();
 router.get("/:id", getRecordData);
 router.post(
   "/",
-  body(["user_id", "name", "focus_time", "unfocus_time", "conent"]).notEmpty(),
+  body(["user_id", "name", "focus_time", "unfocus_time", "content"]).notEmpty(),
   createRecordData
 );
 router.delete("/", body("id").notEmpty(), deleteRecordData);
